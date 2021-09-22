@@ -25,8 +25,8 @@ static uintptr_t syscall(uintptr_t which, uint64_t arg0, uint64_t arg1, uint64_t
   __sync_synchronize();
 
   tohost = (uintptr_t)magic_mem;
-  while (fromhost == 0)
-    ;
+  // while (fromhost == 0)
+  //   ;
   fromhost = 0;
 
   __sync_synchronize();
@@ -226,7 +226,7 @@ static void vprintfmt(void (*putch)(int, void**), void **putdat, const char *fmt
     case '-':
       padc = '-';
       goto reswitch;
-      
+
     // flag to pad with 0's instead of spaces
     case '0':
       padc = '0';
@@ -335,7 +335,7 @@ static void vprintfmt(void (*putch)(int, void**), void **putdat, const char *fmt
     case '%':
       putch(ch, putdat);
       break;
-      
+
     // unrecognized escape sequence - just print it literally
     default:
       putch('%', putdat);
